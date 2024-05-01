@@ -19,6 +19,7 @@ namespace Club
         public static byte CantAlumnos => cantAlumnos;
 
         internal List<Socio> Alumnos { get => alumnos; set => alumnos = value; }
+        internal Profesor Profe { get => profe; set => profe = value; }
 
         public Disciplina()
         {
