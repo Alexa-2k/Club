@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Club
 {
-    internal class NoSocio : Persona
+    internal class NoSocio : Alumno
     {
         
         internal Disciplina Disciplina { get; set; }

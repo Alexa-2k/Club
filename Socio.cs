@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Club
 {
-    internal class Socio : Persona
+    internal class Socio : Alumno
 
     {
-        ushort nroSocio;
+        public ushort nroSocio;
         Disciplina disciplina;
-        bool inhibido;
-        DateTime venceCuota; 
+        public bool inhibido;
+        public DateTime venceCuota; 
 
         public ushort NroSocio { get => nroSocio; set => nroSocio = value; }
         public bool Inhibido { get => inhibido; set => inhibido = value; }

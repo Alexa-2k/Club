@@ -45,18 +45,7 @@ namespace Club
 
 
     }
-      public void InscribirAlumno(Alumno) {
-            
-            if (vacantes <= cantAlumnos)
-            {
-                this.Alumnos = new List<Alumno>();
-            } else {
-
-                cupo = false;
-            }
-
-
-        }
+     
 
         }
        
