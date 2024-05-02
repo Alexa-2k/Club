@@ -28,7 +28,7 @@ public class Alumno : Persona
         public Disciplina Actividad { get => actividad; set => actividad = value; }
         public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
 
-        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool inhibido, DateTime venceCuota, Pago pago)
+        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool inhibido, DateTime venceCuota, Pago pago) : base(identidad.Nombre, identidad.Apellido, identidad.TipoID, identidad.NroID, identidad.Domicilio)
         {
             NroSocio = nroSocio;
             Identidad = identidad;
@@ -40,12 +40,12 @@ public class Alumno : Persona
       }
 
 
-        /*public override string ToString()
+        public override string ToString()
         {
-          
+            return "Nro.Socio (0 si no es socio): " + NroSocio + " Datos personales: " + Identidad; 
 
 
-        } */
+        } 
 
     }
 }
