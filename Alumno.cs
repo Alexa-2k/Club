@@ -42,10 +42,9 @@ public class Alumno : Persona
 
         public override string ToString()
         {
-            return "Nro.Socio (0 si no es socio): " + NroSocio + " Datos personales: " + Identidad; 
+            return "Nro.Socio (0 si no es socio): " + NroSocio +"\nDATOS PERSONALES: " + "\n" + Identidad + "\nActividad: " + Actividad.NomDisciplina + "\nInhibido: " + Inhibido + "\nVencimiento cuota: " + VenceCuota + "\nPago : " + Pago + "\n";
 
-
-        } 
+         } 
 
     }
 }

@@ -10,7 +10,14 @@ namespace Club
             public double Monto { get; set; }
             public string MetodoPago { get; set; }
             public DateTime FechaPago { get; set; }
-     
+
+
+
+        public override string ToString()
+        {
+            return "Monto: " + Monto + " || Metodo de pago: " + MetodoPago + " || Fecha de Pago: " + FechaPago + "\n";
+        }
+
 
     }
 }

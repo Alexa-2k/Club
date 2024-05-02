@@ -40,5 +40,13 @@ public class Persona
             set { nroID = value; }
         }
         internal Domicilio Domicilio { get => domicilio; set => domicilio = value; }
+
+        public override string ToString()
+        {
+            return "Apellido y Nombre:  " + Apellido + ", " + Nombre + " \nTipo y numero DNI: " + TipoID + " " + NroID + "\n" + Domicilio + "\n";
+        }
+        
+
+
     }
 }

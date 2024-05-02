@@ -98,6 +98,9 @@ namespace Club
 
 
 
+            // Testeamos la presentación de datos: 
+
+            Console.WriteLine(NSE98765432);
 
 
 
