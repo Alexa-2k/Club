@@ -45,7 +45,7 @@ namespace Club
 
             //========================================
             // REGISTRO 
-            
+
             //Instanciamos alumnos: 
 
             // Instancia de persona
@@ -61,19 +61,105 @@ namespace Club
             });
 
             // Registro : Instancia de Alumno socio con los datos de Persona JuanPerez
-                Alumno Soc12345 = new Alumno(
-                nroSocio: 12345,
-                identidad: JuanPerez,
-                actividad: spinning,
-                inhibido: false,
-                aptoFisico: true,
-                venceCuota: DateTime.Now.AddMonths(1),   //se registra hoy Y PAGA HOY, la cuota vence dentro de un mes
-                pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
-                    
-            );
+            Alumno Soc12345 = new Alumno(
+            nroSocio: 12345,
+            identidad: JuanPerez,
+            actividad: spinning,
+            inhibido: false,
+            aptoFisico: true,
+            venceCuota: DateTime.Now.AddMonths(1),   //se registra hoy Y PAGA HOY, la cuota vence dentro de un mes
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+
+        );
+            //Llamado al método que registra al alumno
+
+            Soc12345.RegistrarSocios(Soc12345);
+
+            Persona JuanMartin = new Persona("Juan", "Martin", "Pasaporte", "AAB281830",
+            new Domicilio()
+
+            {
+                Calle = "Fantasía",
+                Numero = 257,
+                Ciudad = "Buenos Aires",
+                Cp = "C1439",
+                Telefono = 1123456789
+            });
+
+            //Siguiente instancia
+
+            // Registro : Instancia de Alumno socio con los datos de Persona JuanMartin
+            Alumno Soc23456 = new Alumno(
+            nroSocio: 23456,
+            identidad: JuanMartin,
+            actividad: spinning,
+            inhibido: false,
+            aptoFisico: true,
+            venceCuota: DateTime.Now,   
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+
+        );
+
+            Soc23456.RegistrarSocios(Soc23456);
 
 
-            //Creamos otro alumno, no socio
+            //Siguiente instancia
+
+            Persona SolSchmidt = new Persona("Sol", "Schmidt", "DNI", "87654321",
+                        new Domicilio()
+
+                        {
+                            Calle = "Callecita",
+                            Numero = 4321,
+                            Ciudad = "Buenos Aires",
+                            Cp = "C1324",
+                            Telefono = 1176542314
+                        });
+
+            // Registro : Instancia de Alumno socio con los datos de Persona SolSchmidt
+            Alumno Soc65432 = new Alumno(
+            nroSocio: 65432,
+            identidad: SolSchmidt,
+            actividad: spinning,
+            inhibido: false,
+            aptoFisico: true,
+            venceCuota: DateTime.Now.AddMonths(1),
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  
+        );
+
+           
+            Soc65432.RegistrarSocios(Soc65432);
+
+
+            //Siguiente instancia
+
+            Persona GonzaloLopez = new Persona("Gonzalo", "Lopez", "DNI Extranjero", "99999999",
+                        new Domicilio()
+
+                        {
+                            Calle = "Avenida",
+                            Numero = 3333,
+                            Ciudad = "Buenos Aires",
+                            Cp = "C1222",
+                            Telefono = 1199999999
+                        });
+
+            // Registro : Instancia de Alumno socio
+            Alumno Soc11111 = new Alumno(
+            nroSocio: 11111,
+            identidad: GonzaloLopez,
+            actividad: spinning,
+            inhibido: false,
+            aptoFisico: true,
+            venceCuota: DateTime.Now,  
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+
+        );
+
+            Soc11111.RegistrarSocios(Soc11111);
+            
+            
+            //Nuevo alumno, NO socio
 
             Persona DNIE98765432 = new Persona("Andrea", "Gonzalez", "DNI Extranjero", "98765432",
                  new Domicilio()
@@ -89,19 +175,23 @@ namespace Club
 
             // Registro: Instancia de Alumno NO socio con los datos de Persona Andrea Gonzalez
 
-                Alumno NSE98765432 = new Alumno(
-                nroSocio: 0,
-                identidad: DNIE98765432,
-                actividad: spinning,
-                aptoFisico: true,
-                inhibido: true,   //todavía no pagó, está inhibida
+            Alumno NSE98765432 = new Alumno(
+            nroSocio: 0,
+            identidad: DNIE98765432,
+            actividad: spinning,
+            aptoFisico: true,
+            inhibido: true,   //todavía no pagó, está inhibida
 
-                venceCuota: DateTime.Now,  // como no es socia, paga las clases día a día. Paga hoy y el vencimiento es hoy
-                pago: new Pago(spinning.ValorCuotaNoSocio, null, null)  //pago en blanco, todavia no pagó
-            );
+            venceCuota: DateTime.Now,  // como no es socia, paga las clases día a día. Paga hoy y el vencimiento es hoy
+            pago: new Pago(spinning.ValorCuotaNoSocio, null, null)  //pago en blanco, todavia no pagó
 
+            ) ;
 
-            // Testeamos la presentación de datos: 
+            NSE98765432.RegistrarSocios(NSE98765432);
+
+            //======================================================
+
+            // Test de presentación de datos: 
 
             Console.WriteLine("Verificación del registro:\n");
             Console.WriteLine(NSE98765432);
@@ -113,11 +203,12 @@ namespace Club
             Console.WriteLine(profeSpinning);
 
 
+            //======================================================
 
-            //Registramos el pago de Andrea Gonzalez
+            //Registro del pago de Andrea Gonzalez
 
             Pago pagoNSE98765432 = new Pago(null, null, null);
-            pagoNSE98765432.RegistrarPago(NSE98765432, spinning) ;
+            pagoNSE98765432.RegistrarPago(NSE98765432, spinning);
 
 
             Console.WriteLine("\n======================================");
@@ -125,7 +216,7 @@ namespace Club
 
 
 
-            //Registramos el pago de Juan Perez
+            //Registro del pago de Juan Perez
 
             Pago pagoSoc12345 = new Pago(null, null, null);
             pagoSoc12345.RegistrarPago(Soc12345, spinning);
@@ -133,6 +224,28 @@ namespace Club
 
             Console.WriteLine("\n======================================");
             Console.WriteLine("\n");
+
+
+            //======================================================
+
+
+            //Mostrar listado de socios
+
+            Alumno.MostrarNOSocios();
+            Console.WriteLine("\n");
+            
+            
+            //Mostrar listado de No socios
+            Alumno.MostrarSocios();
+            Console.WriteLine("\n");
+
+
+            //======================================================
+
+
+            //Listado de alumnos cuya cuota vence hoy. 
+
+            Alumno.VerificarVencimiento();
 
 
 
@@ -146,5 +259,5 @@ namespace Club
     }
 
 
-    }
+}
    

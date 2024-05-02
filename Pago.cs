@@ -27,6 +27,8 @@ namespace Club
 
         public void RegistrarPago(Alumno alumno, Disciplina disciplina)
         {
+            Console.WriteLine("\n REGISTRO DE PAGOS \n");
+            Console.WriteLine("------------------------------ \n");
 
             // Determinar el valor de la cuota basado en si el alumno es socio o no
 

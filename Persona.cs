@@ -43,7 +43,7 @@ public class Persona
 
         public override string ToString()
         {
-            return "Apellido y Nombre:  " + Apellido + ", " + Nombre + " \nTipo y numero DNI: " + TipoID + " " + NroID + "\n" + Domicilio + "\n";
+            return "Apellido y Nombre:  " + Apellido + ", " + Nombre + " \nTipo y numero ID: " + TipoID + " " + NroID + "\n" + Domicilio + "\n";
         }
         
 
