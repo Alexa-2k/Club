@@ -6,7 +6,7 @@ namespace Club
 {
 public class Persona
     {
-        string nombre, apellido, documento;
+        private string nombre, apellido, documento;
         Domicilio domicilio;
 
         public string Nombre { get => nombre; set => nombre = value; }

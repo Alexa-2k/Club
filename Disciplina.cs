@@ -6,10 +6,9 @@ namespace Club
 {
    public class Disciplina
     {
-        private byte codDisciplina;
         private string nomDisciplina;
         private Profesor profe;
-        private Alumno alumno;
+        //private Alumno alumno;
         private const byte cantAlumnos = 30;
         private List<Alumno> alumnos;
         private double valorMensual;
@@ -17,20 +16,18 @@ namespace Club
         private byte vacante = cantAlumnos;
         private bool cupo;
        
-        public byte CodDisciplina { get => codDisciplina; set => codDisciplina = value; }
         public string NomDisciplina { get => nomDisciplina; set => nomDisciplina = value; }
-
         public static byte CantAlumnos => cantAlumnos;
 
-        //internal List<Alumno> Alumnos { get => alumnos; set => alumnos = value; }
+        internal List<Alumno> Alumnos { get => alumnos; set => alumnos = value; }
         internal Profesor Profe { get => profe; set => profe = value; }
         public double ValorMensua { get => valorMensual; set => valorMensual = value; }
         public double ValorDia { get => valorDia; set => valorDia = value; }
         public byte Vacante { get => vacante; set => vacante = value; }
         public bool Cupo { get => cupo; set => cupo = value; }
-        public Alumno Alumno { get => alumno; set => alumno = value; }
+        //public Alumno Alumno { get => alumno; set => alumno = value; }
 
-        public Disciplina(byte codDis, string nomDis, Profesor profe, double valMes, double valDia, byte vacantes, bool cupo)
+        public Disciplina( string nomDis, Profesor profe, double valMes, double valDia, byte vacantes, bool cupo)
         {
             this.nomDisciplina = nomDis;
             this.profe = profe;

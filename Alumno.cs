@@ -15,6 +15,7 @@ public class Alumno : Persona
         private bool inhibido;          // indica si está inhibido por falta de pago
         private DateTime venceCuota;
         private Pago pago;
+        private bool aptoFisico;
 
 
 
@@ -25,6 +26,7 @@ public class Alumno : Persona
         public Pago Pago { get => pago; set => pago = value; }
         public Persona Identidad { get => identidad; set => identidad = value; }
         public Disciplina Actividad { get => actividad; set => actividad = value; }
+        public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
 
         public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool inhibido, DateTime venceCuota, Pago pago)
         {
@@ -34,7 +36,16 @@ public class Alumno : Persona
             Inhibido = inhibido;
             VenceCuota = venceCuota;
             Pago = pago;
-            VenceCuota = venceCuota;
-      }  
+          
+      }
+
+
+        /*public override string ToString()
+        {
+          
+
+
+        } */
+
     }
 }
