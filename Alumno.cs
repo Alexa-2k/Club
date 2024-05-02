@@ -1,14 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Club
 {
-    internal class Alumno : Persona
+public class Alumno : Persona
+
+
     {
-        Disciplina disciplina;
+        private ushort nroSocio = 0;   //  si no es socio, nro de socio queda en 0
+        private Persona identidad;      // toma los datos personales de clase Persona (nombre, apellido, DNI, domicilio)
+        private Disciplina actividad;  // por ahora asumimos que puede inscribirse en una sola actividad ya que esto no afecta a esta etapa del TP
+        private bool inhibido;          // indica si está inhibido por falta de pago
+        private DateTime venceCuota;
+        private Pago pago;
 
+
+
+        public ushort NroSocio { get => nroSocio; set => nroSocio = value; }
+        public bool Inhibido { get => inhibido; set => inhibido = value; }
+        public DateTime VenceCuota { get => venceCuota; set => venceCuota = value; }
+        
+        public Pago Pago { get => pago; set => pago = value; }
+        public Persona Identidad { get => identidad; set => identidad = value; }
+        public Disciplina Actividad { get => actividad; set => actividad = value; }
+
+        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool inhibido, DateTime venceCuota, Pago pago)
+        {
+            NroSocio = nroSocio;
+            Identidad = identidad;
+            Actividad = actividad;
+            Inhibido = inhibido;
+            VenceCuota = venceCuota;
+            Pago = pago;
+            VenceCuota = venceCuota;
+      }  
     }
-
-
 }

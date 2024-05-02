@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Club
 {
-    internal class Persona
+public class Persona
     {
         string nombre, apellido, documento;
         Domicilio domicilio;

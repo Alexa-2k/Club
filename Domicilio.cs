@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Club
 {
-    internal class Domicilio
+    public class Domicilio
     {
         string calle, ciudad;
         ushort numero, cp;

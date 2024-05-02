@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Club
 {
-    internal class Pago
+   public class Pago
     {
      
-            public decimal Monto { get; set; }
+            public double Monto { get; set; }
             public string MetodoPago { get; set; }
             public DateTime FechaPago { get; set; }
      
