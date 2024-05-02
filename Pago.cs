@@ -9,19 +9,17 @@ namespace Club
         private double? monto;
         private string? metodoPago;
         private DateTime? fechaPago;
-
+        
         public double? Monto { get => monto; set => monto = value; }
         public string MetodoPago { get => metodoPago; set => metodoPago = value; }
         public DateTime? FechaPago { get => fechaPago; set => fechaPago = value; }
-
 
         public Pago(double? monto, string? metodoPago, DateTime? fechaPago)
         {
             Monto = monto;
             MetodoPago = metodoPago;
             FechaPago = fechaPago;
-
-        }
+          }
 
 
 
@@ -44,6 +42,7 @@ namespace Club
             alumno.Inhibido = false;
             string estado = alumno.Inhibido == false ? estado = "No inhibido" : estado = "inhibido";
             // Registrar el pago con el valor de la cuota determinado
+
 
             Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMonto: ${valorCuota} \nMétodo de pago: {MetodoPago} \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
 

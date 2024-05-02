@@ -17,7 +17,7 @@ public class Alumno : Persona
         private DateTime? venceCuota;
         private Pago pago;
         private bool aptoFisico;
-
+        private bool carnet = false;
 
 
         public ushort NroSocio { get => nroSocio; set => nroSocio = value; }
@@ -28,8 +28,11 @@ public class Alumno : Persona
         public Persona Identidad { get => identidad; set => identidad = value; }
         public Disciplina Actividad { get => actividad; set => actividad = value; }
         public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
+        public bool Carnet { get => carnet; set => carnet = value; }
 
-        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool aptoFisico, bool inhibido, DateTime? venceCuota, Pago pago ) : base(identidad.Nombre, identidad.Apellido, identidad.TipoID, identidad.NroID, identidad.Domicilio)
+     
+
+        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool aptoFisico, bool carnet , bool inhibido, DateTime? venceCuota, Pago pago ) : base(identidad.Nombre, identidad.Apellido, identidad.TipoID, identidad.NroID, identidad.Domicilio)
         {
             NroSocio = nroSocio;
             Identidad = identidad;
@@ -38,6 +41,8 @@ public class Alumno : Persona
             VenceCuota = venceCuota;
             Pago = pago ;
             AptoFisico = aptoFisico;
+            Carnet = carnet;
+
           
       }
 
@@ -47,6 +52,7 @@ public class Alumno : Persona
 
         public void RegistrarSocios(Alumno nuevoAlumno)
         {
+            nuevoAlumno.carnet = true;
             if (nuevoAlumno.NroSocio != 0)
             {
                 ListadoSocios.Add(nuevoAlumno);
@@ -100,7 +106,7 @@ public class Alumno : Persona
         
         public override string ToString()
         {
-            return "Nro.Socio: " +  NroSocio + "\n\nDATOS PERSONALES: " + "\n" + Identidad + "\nActividad: " + Actividad.NomDisciplina + "\nApto Físico: " + AptoFisico + "\nInhibido: " + Inhibido + "\nVencimiento cuota: " + VenceCuota;
+            return "Nro.Socio: " +  NroSocio + "\n\nDATOS PERSONALES: " + "\n" + Identidad + "\nActividad: " + Actividad.NomDisciplina + "\nApto Físico: " + AptoFisico + "\nInhibido: " + Inhibido + "\nCarnet entregado: " + carnet + "\nVencimiento cuota: " + VenceCuota;
 
          } 
 

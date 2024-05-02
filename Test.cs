@@ -65,12 +65,12 @@ namespace Club
             nroSocio: 12345,
             identidad: JuanPerez,
             actividad: spinning,
-            inhibido: false,
             aptoFisico: true,
+            carnet: true,
+            inhibido: false,
             venceCuota: DateTime.Now.AddMonths(1),   //se registra hoy Y PAGA HOY, la cuota vence dentro de un mes
             pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
-
-        );
+                    );
             //Llamado al método que registra al alumno
 
             Soc12345.RegistrarSocios(Soc12345);
@@ -93,8 +93,9 @@ namespace Club
             nroSocio: 23456,
             identidad: JuanMartin,
             actividad: spinning,
-            inhibido: false,
             aptoFisico: true,
+            carnet: true,
+            inhibido: false,
             venceCuota: DateTime.Now,   
             pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
 
@@ -121,13 +122,13 @@ namespace Club
             nroSocio: 65432,
             identidad: SolSchmidt,
             actividad: spinning,
-            inhibido: false,
             aptoFisico: true,
+            carnet: true,
+            inhibido: false,
             venceCuota: DateTime.Now.AddMonths(1),
             pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  
         );
-
-           
+               
             Soc65432.RegistrarSocios(Soc65432);
 
 
@@ -149,8 +150,9 @@ namespace Club
             nroSocio: 11111,
             identidad: GonzaloLopez,
             actividad: spinning,
-            inhibido: false,
             aptoFisico: true,
+            carnet: true,
+            inhibido: false,
             venceCuota: DateTime.Now,  
             pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
 
@@ -180,6 +182,7 @@ namespace Club
             identidad: DNIE98765432,
             actividad: spinning,
             aptoFisico: true,
+            carnet: false,       // a los no socios no se les entrega carnet.
             inhibido: true,   //todavía no pagó, está inhibida
 
             venceCuota: DateTime.Now,  // como no es socia, paga las clases día a día. Paga hoy y el vencimiento es hoy
