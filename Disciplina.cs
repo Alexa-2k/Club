@@ -11,8 +11,8 @@ namespace Club
         //private Alumno alumno;
         private const byte cantAlumnos = 30;
         private List<Alumno> alumnos;
-        private double valorMensual;
-        private double valorDia;
+        private double valorCuotaSocio;
+        private double valorCuotaNoSocio;
         private byte vacante = cantAlumnos;
         private bool cupo;
        
@@ -21,30 +21,30 @@ namespace Club
 
         internal List<Alumno> Alumnos { get => alumnos; set => alumnos = value; }
         internal Profesor Profe { get => profe; set => profe = value; }
-        public double ValorMensual { get => valorMensual; set => valorMensual = value; }
-
-        public double ValorDia { get => valorDia; set => valorDia = value; }
+        public double ValorCuotaSocio { get => valorCuotaSocio; set => valorCuotaSocio = value; }
+        public double ValorCuotaNoSocio { get => valorCuotaNoSocio; set => valorCuotaNoSocio = value; }
         public byte Vacante { get => vacante; set => vacante = value; }
         public bool Cupo { get => cupo; set => cupo = value; }
-        
+       
         //public Alumno Alumno { get => alumno; set => alumno = value; }
 
-        public Disciplina( string nomDis, Profesor profe, double valMes, double valDia, byte vacantes, bool cupo)
+        public Disciplina( string nomDis, Profesor profe, double valSocio, double valNoSoc, byte vacantes, bool cupo)
         {
-            this.nomDisciplina = nomDis;
-            this.profe = profe;
-            this.ValorMensual = valMes;
-            this.valorDia = valDia;
-            this.vacante = vacantes;
-            this.cupo = cupo;
-            this.alumnos = new List<Alumno>();
-
-        }
+            NomDisciplina = nomDis;
+            Profe = profe;
+            ValorCuotaSocio = valSocio;
+            ValorCuotaNoSocio = valNoSoc;
+            Vacante = vacantes;
+            Cupo = cupo;
+            Alumnos = new List<Alumno>();
 
 
-        public override string ToString()
+    }
+
+
+    public override string ToString()
         {
-            return "Actvidad: " + NomDisciplina + "Profesor a cargo: " + Profe + "Valor mensual: " + ValorMensual + "Valor clase única: " + ValorDia + "Vacantes disponibles: " + Vacante
+            return "Actvidad: " + NomDisciplina + "Profesor a cargo: " + Profe + "Valor mensual: " + ValorCuotaSocio + "Valor clase única: " + ValorCuotaNoSocio + "Vacantes disponibles: " + Vacante
              ;
 
         }

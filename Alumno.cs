@@ -28,22 +28,22 @@ public class Alumno : Persona
         public Disciplina Actividad { get => actividad; set => actividad = value; }
         public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
 
-        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool inhibido, DateTime venceCuota, Pago pago) : base(identidad.Nombre, identidad.Apellido, identidad.TipoID, identidad.NroID, identidad.Domicilio)
+        public Alumno(ushort nroSocio, Persona identidad, Disciplina actividad, bool aptoFisico, bool inhibido, DateTime venceCuota, Pago pago ) : base(identidad.Nombre, identidad.Apellido, identidad.TipoID, identidad.NroID, identidad.Domicilio)
         {
             NroSocio = nroSocio;
             Identidad = identidad;
             Actividad = actividad;
             Inhibido = inhibido;
             VenceCuota = venceCuota;
-            Pago = pago;
+            Pago = pago ;
+            AptoFisico = aptoFisico;
           
       }
 
-
-
+     
         public override string ToString()
         {
-            return "Nro.Socio (0 si no es socio): " +  NroSocio + "\n\nDATOS PERSONALES: " + "\n" + Identidad + "\nActividad: " + Actividad.NomDisciplina + "\nInhibido: " + Inhibido + "\nVencimiento cuota: " + VenceCuota + "\nPago : " + Pago + "\n";
+            return "Nro.Socio (0 si no es socio): " +  NroSocio + "\n\nDATOS PERSONALES: " + "\n" + Identidad + "\nActividad: " + Actividad.NomDisciplina + "\nApto Físico: " + AptoFisico + "\nInhibido: " + Inhibido + "\nVencimiento cuota: " + VenceCuota;
 
          } 
 
