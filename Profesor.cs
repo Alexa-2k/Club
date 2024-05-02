@@ -29,7 +29,7 @@ namespace Club
 
         public override string ToString()
         {
-            return "Legajo: " + Legajo + "\nDatos personales: " + "\n" + Datos + "\n";
+            return "Legajo: " + Legajo + "\nDATOS PERSONALES: " + "\n" + Datos + "\n";
 
         }
     }

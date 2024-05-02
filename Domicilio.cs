@@ -19,7 +19,7 @@ namespace Club
 
         public override string ToString()
         {
-            return "Calle : " + Calle + " " + Numero + "\nCP: " + Cp +  "\nCiudad: " + Ciudad + "\nTelefono de contacto: " + Telefono + "\n";
+            return "Calle: " + Calle + " Nro: " + Numero + "\nCP: " + Cp +  "\nCiudad: " + Ciudad + "\nTelefono de contacto: " + Telefono + "\n";
                 
         }
 
