@@ -41,17 +41,17 @@ namespace Club
             MetodoPago = Console.ReadLine();
             MetodoPago = MetodoPago.ToUpper(); 
             if (MetodoPago == "TARJETA") {
-                Console.WriteLine("\nPromoción en cuotas? \nIngrese 3 para tres cuotas, 6 para 6 cuotas, 0 para ninguna");
+                Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \n0 para ninguna");
                 cuotas = Console.ReadLine();
             }
 
             if(cuotas == "3")
             {
-                valorCuota = valorCuota / 3;
+                valorCuota = valorCuota*1.25 / 3;
             
             } else if (cuotas == "6")
             {
-                valorCuota = valorCuota / 6;
+                valorCuota = valorCuota*1.5 / 6;
             } 
 
             FechaPago = DateTime.Now;
