@@ -38,22 +38,15 @@ namespace Club
             Cupo = cupo;
             Alumnos = new List<Alumno>();
 
+            }
 
-    }
-
-
-    public override string ToString()
+        public override string ToString()
         {
             return "Actvidad: " + NomDisciplina + "Profesor a cargo: " + Profe + "Valor mensual: " + ValorCuotaSocio + "Valor clase única: " + ValorCuotaNoSocio + "Vacantes disponibles: " + Vacante
              ;
 
         }
-
-        
-        
     }
-     
-
 }
        
 
