@@ -7,9 +7,9 @@ namespace Club
 {
     public class Domicilio
     {
-        string calle, ciudad, cp;
-        ushort numero;
-        int telefono;
+        private string calle, ciudad, cp;
+        private ushort numero;
+        private int telefono;
 
         public string Calle { get => calle; set => calle = value; }
         public string Ciudad { get => ciudad; set => ciudad = value; }

@@ -9,16 +9,19 @@ namespace Club
         private double? monto;
         private string? metodoPago;
         private DateTime? fechaPago;
+        private string cuotas;
         
         public double? Monto { get => monto; set => monto = value; }
         public string MetodoPago { get => metodoPago; set => metodoPago = value; }
         public DateTime? FechaPago { get => fechaPago; set => fechaPago = value; }
+        public string Cuotas { get => cuotas; set => cuotas = value; }
 
         public Pago(double? monto, string? metodoPago, DateTime? fechaPago)
         {
             Monto = monto;
             MetodoPago = metodoPago;
             FechaPago = fechaPago;
+            Cuotas = cuotas;
           }
 
 
@@ -32,10 +35,25 @@ namespace Club
 
             double valorCuota = alumno.NroSocio == 0 ? disciplina.ValorCuotaNoSocio : disciplina.ValorCuotaSocio;
 
-            // Solicitar al usuario el método de pago y la actividad
+            // Solicitar al usuario el método de pago
 
             Console.WriteLine($"\n {alumno.Apellido}, {alumno.Nombre}:  Por favor indique el método de pago (Tarjeta, Efectivo)\n");
             MetodoPago = Console.ReadLine();
+            MetodoPago = MetodoPago.ToUpper(); 
+            if (MetodoPago == "TARJETA") {
+                Console.WriteLine("\nPromoción en cuotas? \nIngrese 3 para tres cuotas, 6 para 6 cuotas, 0 para ninguna");
+                cuotas = Console.ReadLine();
+            }
+
+            if(cuotas == "3")
+            {
+                valorCuota = valorCuota / 3;
+            
+            } else if (cuotas == "6")
+            {
+                valorCuota = valorCuota / 6;
+            } 
+
             FechaPago = DateTime.Now;
 
             // Actualizar el estado del alumno
@@ -44,7 +62,10 @@ namespace Club
             // Registrar el pago con el valor de la cuota determinado
 
 
-            Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMonto: ${valorCuota} \nMétodo de pago: {MetodoPago} \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
+            Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMétodo de pago: {MetodoPago} \nCantidad de cuotas: {cuotas} \nMonto: ${valorCuota}  \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
+            Console.WriteLine("\nPresione una tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
 
             
             }

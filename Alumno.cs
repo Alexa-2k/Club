@@ -52,13 +52,14 @@ public class Alumno : Persona
 
         public void RegistrarSocios(Alumno nuevoAlumno)
         {
-            nuevoAlumno.carnet = true;
-            if (nuevoAlumno.NroSocio != 0)
+           if (nuevoAlumno.NroSocio != 0)
             {
+                carnet = true;                      //se entrega carnet al momento de registrarse
                 ListadoSocios.Add(nuevoAlumno);
+                
             } else
             {
-                ListaNOSocios.Add(nuevoAlumno);
+                ListaNOSocios.Add(nuevoAlumno);  //los No socios no reciben carnet
             }
 
 
@@ -72,8 +73,13 @@ public class Alumno : Persona
             foreach (var alumno in ListadoSocios)
             {
                 Console.WriteLine(alumno);
+                Console.WriteLine("-----------------------------\n");
+               
             }
-        
+
+            Console.WriteLine("\nPresione una tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public static void MostrarNOSocios()
@@ -84,8 +90,11 @@ public class Alumno : Persona
             foreach (var alumno in ListaNOSocios)
             {
                 Console.WriteLine(alumno);
+                Console.WriteLine("-----------------------------\n");
             }
-
+            Console.WriteLine("\nPresione una tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public static void VerificarVencimiento()
@@ -99,9 +108,12 @@ public class Alumno : Persona
                 {
                     AlumnosConVencimientoHoy.Add(alumno);
                     Console.WriteLine(alumno);
-
+                    Console.WriteLine("-----------------------------\n");
                 }
             }
+            Console.WriteLine("\nPresione una tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
         }
         
         public override string ToString()
