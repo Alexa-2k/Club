@@ -87,9 +87,15 @@ namespace Club
 
 
              Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMétodo de pago: {MetodoPago} \nCantidad de cuotas: {cuotas} \nMonto: ${valorCuotas}  \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
-             Console.WriteLine("\nPresione una tecla para continuar");
-             Console.ReadKey();
-             Console.Clear();
+
+            Console.WriteLine("\nInscripción confirmada a las siguientes actividades:");
+            foreach (var actividad in actividades)
+            {
+                Console.WriteLine($"- Actividad: {actividad.NomDisciplina}, Profesor: {actividad.Profe.Apellido}, {actividad.Profe.Nombre} ");
+            }
+            Console.WriteLine("\nPresione una tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
 
              }
  

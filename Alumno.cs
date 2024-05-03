@@ -47,7 +47,7 @@ public class Alumno : Persona
         public static List<Alumno> ListaNOSocios = new List<Alumno>();
         public static List<Alumno> ListadoSocios = new List<Alumno>();
         public static List<Alumno> AlumnosConVencimientoHoy = new List<Alumno>();
-
+//----------------------------------------------------
         public void RegistrarSocios(Alumno nuevoAlumno)
         {
            if (nuevoAlumno.NroSocio != 0)
@@ -60,24 +60,34 @@ public class Alumno : Persona
                 ListaNOSocios.Add(nuevoAlumno);  //los No socios no reciben carnet
             }
         }
-
+//--------------------------------------------------------------
         public void ElegirActividades(List<Disciplina> actividadesDisponibles)
         {
-            Console.WriteLine($"{Apellido}, {Nombre}: Seleccione hasta 3 actividades:");
+            Console.WriteLine($"\n {Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
+
+            //Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
+            //un número de orden para que el usuario elija el nro de actividad
+
             for (int i = 0; i < actividadesDisponibles.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
             }
+            Console.WriteLine("0. Finalizar elección" + "\n"); 
+            //---------------------------------------
+            //nueva lista en la que se adicionan los cursos seleccionados
 
             List<int> seleccionados = new List<int>();
             int opcion;
-            while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count)
+
+            //Condicion while: mientras la cantidad de elegidos sea menor que 3, el nro de actividad ingresado sea >0 (si es cero, se toma como elección nula) y el nro de actividad ingresado sea <= a la cantidad de actividades disponibles, se agrega la actividad seleccionada a esta lista
+            
+            while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count) 
             {
                 seleccionados.Add(opcion);
             }
 
             Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1]).ToList();
-            Console.Write(seleccionados);
+            Console.Write("\n");
         }
 
         //-------------------------------------------------

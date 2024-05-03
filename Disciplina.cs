@@ -42,7 +42,7 @@ namespace Club
 
         public override string ToString()
         {
-            return "Actvidad: " + NomDisciplina + "Profesor a cargo: " + Profe + "Valor mensual: " + ValorCuotaSocio + "Valor clase única: " + ValorCuotaNoSocio + "Vacantes disponibles: " + Vacante
+            return $"Actvidad: {NomDisciplina} Profesor a cargo: {Profe} Valor mensual: {ValorCuotaSocio},  Valor clase única: {ValorCuotaNoSocio} Vacantes disponibles: {Vacante}"
              ;
 
         }
