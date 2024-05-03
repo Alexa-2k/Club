@@ -69,7 +69,7 @@ namespace Club
             carnet: true,
             inhibido: false,
             venceCuota: DateTime.Now.AddMonths(1),   //se registra hoy Y PAGA HOY, la cuota vence dentro de un mes
-            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null, "0")  // todavía no pagó
                     );
             //Llamado al método que registra al alumno
 
@@ -97,7 +97,7 @@ namespace Club
             carnet: true,
             inhibido: false,
             venceCuota: DateTime.Now,   
-            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null, "0")  // todavía no pagó
 
         );
 
@@ -125,8 +125,8 @@ namespace Club
             aptoFisico: true,
             carnet: true,
             inhibido: false,
-            venceCuota: DateTime.Now.AddMonths(1),
-            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  
+            venceCuota: DateTime.Now.AddDays(10),
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null, "0")  
         );
                
             Soc65432.RegistrarSocios(Soc65432);
@@ -154,7 +154,7 @@ namespace Club
             carnet: true,
             inhibido: false,
             venceCuota: DateTime.Now,  
-            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null)  // todavía no pagó
+            pago: new Pago(spinning.ValorCuotaSocio, "Tarjeta", null, "0")  // todavía no pagó
 
         );
 
@@ -186,7 +186,7 @@ namespace Club
             inhibido: true,   //todavía no pagó, está inhibida
 
             venceCuota: DateTime.Now,  // como no es socia, paga las clases día a día. Paga hoy y el vencimiento es hoy
-            pago: new Pago(spinning.ValorCuotaNoSocio, null, null)  //pago en blanco, todavia no pagó
+            pago: new Pago(spinning.ValorCuotaNoSocio, null, null, "0")  //pago en blanco, todavia no pagó
 
             ) ;
 
@@ -210,7 +210,7 @@ namespace Club
 
             //Registro del pago de Andrea Gonzalez
 
-            Pago pagoNSE98765432 = new Pago(null, null, null);
+            Pago pagoNSE98765432 = new Pago(null, null, null, "0");
             pagoNSE98765432.RegistrarPago(NSE98765432, spinning);
 
 
@@ -221,7 +221,7 @@ namespace Club
 
             //Registro del pago de Juan Perez
 
-            Pago pagoSoc12345 = new Pago(null, null, null);
+            Pago pagoSoc12345 = new Pago(null, null, null, "0");
             pagoSoc12345.RegistrarPago(Soc12345, spinning);
 
 

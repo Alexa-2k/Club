@@ -16,14 +16,13 @@ namespace Club
         public DateTime? FechaPago { get => fechaPago; set => fechaPago = value; }
         public string Cuotas { get => cuotas; set => cuotas = value; }
 
-        public Pago(double? monto, string? metodoPago, DateTime? fechaPago)
+        public Pago(double? monto, string? metodoPago, DateTime? fechaPago, string cuotas)
         {
             Monto = monto;
             MetodoPago = metodoPago;
             FechaPago = fechaPago;
             Cuotas = cuotas;
           }
-
 
 
         public void RegistrarPago(Alumno alumno, Disciplina disciplina)
@@ -37,12 +36,17 @@ namespace Club
 
             // Solicitar al usuario el método de pago
 
-            Console.WriteLine($"\n {alumno.Apellido}, {alumno.Nombre}:  Por favor indique el método de pago (Tarjeta, Efectivo)\n");
+            Console.WriteLine($"\n {alumno.Apellido}, {alumno.Nombre}: el monto de su cuota es $ {valorCuota}  \nPor favor indique el método de pago (T para pago con Tarjeta, o cualquier otra tecla para pago en Efectivo)\n");
             MetodoPago = Console.ReadLine();
             MetodoPago = MetodoPago.ToUpper(); 
-            if (MetodoPago == "TARJETA") {
+            if (MetodoPago == "T") {
                 Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \n0 para ninguna");
                 cuotas = Console.ReadLine();
+                MetodoPago = "Tarjeta de crédito";
+            } 
+            else
+            {
+                MetodoPago = "Efectivo";
             }
 
             if(cuotas == "3")
