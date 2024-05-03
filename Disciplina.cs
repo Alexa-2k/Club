@@ -49,36 +49,6 @@ namespace Club
 
         }
 
-        public void InscribirAlumno(Alumno alumno)
-        {
-            // Si no está inhibido
-            if (!alumno.Inhibido)
-            {
-                // y hay vacantes
-                if (vacante > 0)
-                {
-                    // incorporamos al alumno a la lista
-                    alumnos.Add(alumno);
-                    vacante--; // y restamos una vacante
-
-                    // si las vacantes llegan a 0 con este alumno, cambiamos cupo a falso
-                    if (vacante == 0)
-                    {
-                        cupo = false;
-                    }
-                }
-                else
-                {
-                    // Si ya no hay vacantes
-                    Console.WriteLine("No hay vacantes para esta actividad.");
-                }
-            }
-            else
-            {
-                // Si está inhibido
-                Console.WriteLine("Alumno inhibido. Por favor, regularice su situación para poder inscribirse");
-            }
-        }
         
         
     }
