@@ -28,34 +28,39 @@ namespace Club
             ValorCuotas = valorCuotas;
        
           }
-
-
         //------------------------------------------------
 
          public void RegistrarPago(Alumno alumno, List<Disciplina> actividades)
          {
+                
              Console.WriteLine("\n REGISTRO DE PAGOS \n");
              Console.WriteLine("------------------------------ \n");
 
-             // Determinar el valor de la cuota basado en actividades elegidas, y si el alumno es socio o no
-             if (alumno.NroSocio == 0)
-             {
-                 montoTotal = alumno.Actividades.Sum(a => a.ValorCuotaNoSocio);
-             }
-             else
-             {
-                 montoTotal = alumno.Actividades.Sum(a => a.ValorCuotaSocio);
-             }
+            List<Disciplina> actividadesConVacantes = actividades.Where(a => a.Cupo == true).ToList();
+            
+
+            // Calcula el monto total basado solo en las actividades con vacantes disponibles
+            if (alumno.NroSocio == 0)
+            {
+                montoTotal = actividadesConVacantes.Sum(a => a.ValorCuotaNoSocio);
+            }
+            else
+            {
+                montoTotal = actividadesConVacantes.Sum(a => a.ValorCuotaSocio);
+            }
 
              // Solicitar al usuario el método de pago
-
-             Console.WriteLine($"\n {alumno.Apellido}, {alumno.Nombre}: el monto de su cuota es $ {montoTotal}  \nPor favor indique el método de pago (T para pago con Tarjeta, o cualquier otra tecla para pago en Efectivo)\n");
+             if (montoTotal == 0)
+            {
+                Console.WriteLine("No tiene pagos pendientes");
+            }else { 
+             Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: el monto de su cuota es $ {montoTotal}  \nPor favor indique el método de pago (T para pago con Tarjeta, o cualquier otra tecla para pago en Efectivo)\n");
 
              MetodoPago = Console.ReadLine();
              MetodoPago = MetodoPago.ToUpper(); 
 
              if (MetodoPago == "T") {
-                 Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \n0 para ninguna");
+                 Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \n0 para ninguna \n");
 
                  cuotas = Console.ReadLine();
 
@@ -83,27 +88,34 @@ namespace Club
              // Actualizar el estado del alumno
              alumno.Inhibido = false;
              string estado = alumno.Inhibido == false ? estado = "No inhibido" : estado = "inhibido";
-             // Registrar el pago con el valor de la cuota determinado
+         
+            // Registrar el pago con el valor de la cuota determinado
 
-
-             Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMétodo de pago: {MetodoPago} \nCantidad de cuotas: {cuotas} \nMonto: ${valorCuotas}  \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
+            Console.WriteLine($"\n{alumno.Apellido}, {alumno.Nombre}: Su pago ha sido registrado. \nMétodo de pago: {MetodoPago} \nCantidad de cuotas: {cuotas} \nMonto: ${valorCuotas}  \nFecha de Pago: {FechaPago}\nVencimiento cuota: {alumno.VenceCuota} \nEstado: {estado}");
 
             Console.WriteLine("\nInscripción confirmada a las siguientes actividades:");
-            foreach (var actividad in actividades)
-            {
-                Console.WriteLine($"- Actividad: {actividad.NomDisciplina}, Profesor: {actividad.Profe.Apellido}, {actividad.Profe.Nombre} ");
+                foreach (var actividad in actividadesConVacantes)
+                {
+                    actividad.Vacante -= 1;
+                    if (actividad.Vacante == 0)
+                    {
+                        actividad.Cupo = false;
+                    }
+
+                    Console.WriteLine($"- Actividad: {actividad.NomDisciplina}, Profesor: {actividad.Profe.Apellido}, {actividad.Profe.Nombre}, Vacantes: {actividad.Vacante}");
+                }
             }
+            
             Console.WriteLine("\nPresione una tecla para continuar");
             Console.ReadKey();
             Console.Clear();
-
+           
              }
  
         public override string ToString()
         {
             return ($"Monto: {valorCuotas} \nMetodo de pago: {MetodoPago} \nFecha de Pago: {FechaPago}\n");
         }
-
 
     }
 }

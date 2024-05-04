@@ -47,6 +47,8 @@ public class Alumno : Persona
         public static List<Alumno> ListaNOSocios = new List<Alumno>();
         public static List<Alumno> ListadoSocios = new List<Alumno>();
         public static List<Alumno> AlumnosConVencimientoHoy = new List<Alumno>();
+       
+
 //----------------------------------------------------
         public void RegistrarSocios(Alumno nuevoAlumno)
         {
@@ -54,41 +56,102 @@ public class Alumno : Persona
             {
                 carnet = true;                      //se entrega carnet al momento de registrarse
                 ListadoSocios.Add(nuevoAlumno);
+                Console.WriteLine($"INSCRIPCIÓN REGISTRADA \n Socio Nro: {nroSocio} \n {Apellido},{Nombre} \n Carnet entregado.\n \n");
                 
             } else
             {
-                ListaNOSocios.Add(nuevoAlumno);  //los No socios no reciben carnet
+                ListaNOSocios.Add(nuevoAlumno);  
+                Console.WriteLine($"INSCRIPCIÓN REGISTRADA \n  {Apellido},{Nombre} \n {TipoID} {NroID} \n \n");
+                //los No socios no reciben carnet ni nro. Socio
             }
         }
-//--------------------------------------------------------------
-        public void ElegirActividades(List<Disciplina> actividadesDisponibles)
-        {
+        //--------------------------------------------------------------
+        /*public void ElegirActividades(List<Disciplina> actividadesDisponibles)
+        {   
             Console.WriteLine($"\n {Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
-
+            
             //Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
             //un número de orden para que el usuario elija el nro de actividad
 
-            for (int i = 0; i < actividadesDisponibles.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
-            }
-            Console.WriteLine("0. Finalizar elección" + "\n"); 
+            for (byte i = 0; i < actividadesDisponibles.Count; i++)
+             {
+                 // Verifica si hay vacantes en la actividad actual
+                 if (actividadesDisponibles[i].Vacante > 0 )
+                 {
+                     Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
+                 }
+                 else
+                 {
+                    Console.Write("");
+                 }
+             }
+                Console.WriteLine("0. Finalizar elección" + "\n"); 
             //---------------------------------------
             //nueva lista en la que se adicionan los cursos seleccionados
 
             List<int> seleccionados = new List<int>();
             int opcion;
-
+             
             //Condicion while: mientras la cantidad de elegidos sea menor que 3, el nro de actividad ingresado sea >0 (si es cero, se toma como elección nula) y el nro de actividad ingresado sea <= a la cantidad de actividades disponibles, se agrega la actividad seleccionada a esta lista
             
-            while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count) 
-            {
+            while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count ) 
+            {             
                 seleccionados.Add(opcion);
             }
 
             Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1]).ToList();
             Console.Write("\n");
+
+            
         }
+        */
+
+        //inicio de prueba
+
+        public void ElegirActividades(List<Disciplina> actividadesDisponibles)
+{   
+    Console.WriteLine($"\n {Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
+    
+    // Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
+    // un número de orden para que el usuario elija el nro de actividad
+    for (byte i = 0; i < actividadesDisponibles.Count; i++)
+    {
+        // Verifica si hay vacantes en la actividad actual
+        if (actividadesDisponibles[i].Vacante > 0)
+        {
+            Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
+        }
+        else
+        {
+            Console.Write("");
+        }
+    }
+    Console.WriteLine("0. Finalizar elección" + "\n"); 
+
+    // Nueva lista en la que se adicionan los cursos seleccionados
+    List<int> seleccionados = new List<int>();
+    int opcion;
+    
+    // Condicion while: mientras la cantidad de elegidos sea menor que 3, el nro de actividad ingresado sea >0 (si es cero, se toma como elección nula) y el nro de actividad ingresado sea <= a la cantidad de actividades disponibles, se agrega la actividad seleccionada a esta lista
+    while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count ) 
+    {             
+        seleccionados.Add(opcion);
+        
+        // Actualiza el atributo Cupo de la actividad seleccionada
+        actividadesDisponibles[opcion - 1].Cupo = actividadesDisponibles[opcion - 1].Vacante > 0;
+    }
+
+    // Filtra las actividades seleccionadas para incluir solo aquellas con vacantes disponibles
+    Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1])
+                             .Where(a => a.Vacante > 0)
+                             .ToList();
+    Console.Write("\n");
+}
+
+
+
+       //fin prueba
+
 
         //-------------------------------------------------
         public static void MostrarSocios()
@@ -97,7 +160,7 @@ public class Alumno : Persona
             Console.WriteLine("------------------------------ \n");
 
             foreach (var alumno in ListadoSocios)
-            {
+            { 
                 Console.WriteLine(alumno);
                 Console.WriteLine("-----------------------------\n");
                
@@ -162,7 +225,6 @@ public class Alumno : Persona
             {
                 sb.AppendLine($"- {actividad.NomDisciplina}");
             }
-
 
             sb.AppendLine($"Apto Físico: {AptoFisico}");
             sb.AppendLine($"Inhibido: {Inhibido}");
