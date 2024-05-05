@@ -60,7 +60,7 @@ namespace Club
              MetodoPago = MetodoPago.ToUpper(); 
 
              if (MetodoPago == "T") {
-                 Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \n0 para ninguna \n");
+                 Console.WriteLine("\nPromoción en cuotas? \nIngrese:\n3 para tres cuotas (con 25% de recargo) \n6 para seis cuotas (con 50% de recargo) \nOtra tecla para una cuota \n");
 
                  cuotas = Console.ReadLine();
 
@@ -80,6 +80,7 @@ namespace Club
                  valorCuotas = montoTotal*1.5 / 6;
              } else
              {
+                 cuotas = "1";
                  valorCuotas = montoTotal;    
              }
 

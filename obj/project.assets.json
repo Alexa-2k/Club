@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\PRACTICAS\\repos\\Club\\Club.csproj",
+      "projectUniqueName": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\Al DRIVE\\Club\\Club-main\\Club.csproj",
       "projectName": "Club",
-      "projectPath": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\PRACTICAS\\repos\\Club\\Club.csproj",
+      "projectPath": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\Al DRIVE\\Club\\Club-main\\Club.csproj",
       "packagesPath": "C:\\Users\\Lore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\PRACTICAS\\repos\\Club\\obj\\",
+      "outputPath": "C:\\Users\\Lore\\Documents\\00programacion\\01. Tecnicatura en desarrollo de software\\0 2do cuatrimestre\\DSOO - MDS\\Al DRIVE\\Club\\Club-main\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

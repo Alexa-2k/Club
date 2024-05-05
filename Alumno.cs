@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -43,9 +44,9 @@ public class Alumno : Persona
             Carnet = carnet;
        
       }
-
-        public static List<Alumno> ListaNOSocios = new List<Alumno>();
         public static List<Alumno> ListadoSocios = new List<Alumno>();
+        public static List<Alumno> ListaNOSocios = new List<Alumno>();
+       
         public static List<Alumno> AlumnosConVencimientoHoy = new List<Alumno>();
        
 
@@ -65,113 +66,134 @@ public class Alumno : Persona
                 //los No socios no reciben carnet ni nro. Socio
             }
         }
-        //--------------------------------------------------------------
-        /*public void ElegirActividades(List<Disciplina> actividadesDisponibles)
-        {   
-            Console.WriteLine($"\n {Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
-            
-            //Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
-            //un número de orden para que el usuario elija el nro de actividad
+        //---------------------------------------------        
+        public void ElegirActividades(List<Disciplina> actividadesDisponibles)
+        {
+            Console.WriteLine($"\n{Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
 
+            // Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
+            // un número de orden para que el usuario elija el nro de actividad
             for (byte i = 0; i < actividadesDisponibles.Count; i++)
-             {
-                 // Verifica si hay vacantes en la actividad actual
-                 if (actividadesDisponibles[i].Vacante > 0 )
-                 {
-                     Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
-                 }
-                 else
-                 {
+            {
+                // Verifica si hay vacantes en la actividad actual
+                if (actividadesDisponibles[i].Vacante > 0)
+                {
+                    Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
+                }
+                else
+                {
                     Console.Write("");
-                 }
-             }
-                Console.WriteLine("0. Finalizar elección" + "\n"); 
-            //---------------------------------------
-            //nueva lista en la que se adicionan los cursos seleccionados
+                }
+            }
+            Console.WriteLine("0. Finalizar elección" + "\n");
 
+            // Nueva lista en la que se adicionan los cursos seleccionados
             List<int> seleccionados = new List<int>();
             int opcion;
-             
-            //Condicion while: mientras la cantidad de elegidos sea menor que 3, el nro de actividad ingresado sea >0 (si es cero, se toma como elección nula) y el nro de actividad ingresado sea <= a la cantidad de actividades disponibles, se agrega la actividad seleccionada a esta lista
+
+            //Inicializamos la primera opción fuera del bucle
+           
+            bool esPrimeraOpcion = true;
+
+
+            // Mientras la cantidad de elegidos sea menor que 3, 
+
+            while (seleccionados.Count < 3)
+            {
+                Console.Write("\nIngrese el número de su opción, o 0 para terminar: \n");
             
-            while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count ) 
-            {             
-                seleccionados.Add(opcion);
+                bool esNumero = Int32.TryParse(Console.ReadLine(), out opcion);
+
+            // Se verifica si el nro de actividad ingresado es válido
+
+                if (!esNumero)
+                {
+                    Console.WriteLine("Por favor, ingrese un número válido.");
+                    continue;
+                }
+
+                //Si la opción es 0 se da por terminada la elección
+
+                if (opcion == 0)
+                {
+                    break; // Termina el bucle si el usuario ingresa 0
+                }
+
+                //se verifica si la opción ya fue seleccionada por el socio, y en ese caso se pide nueva opción
+                if (opcion > 0 && opcion <= actividadesDisponibles.Count)
+                {
+                   if (seleccionados.Contains(opcion))
+                    {
+                        Console.WriteLine("\nATENCIÓN: Ya ha seleccionado esa opción. Por favor, elija otra.");
+                        continue;
+                    }
+
+                    if (opcion > 0 && opcion <= actividadesDisponibles.Count)
+                    {
+                        // Verifica si la actividad aún tiene vacantes disponibles
+
+                        if (actividadesDisponibles[opcion - 1].Vacante <= 0)
+                        {
+                            Console.WriteLine("\nATENCIÓN: Esa actividad ya no tiene vacantes disponibles. Por favor, elija otra.");
+                            continue;
+                        }
+
+                        // Resta una vacante de la actividad seleccionada
+                        
+                        actividadesDisponibles[opcion - 1].Vacante--;
+
+                        // Añade la opción a la lista de seleccionados
+                        seleccionados.Add(opcion);
+
+                        // Actualiza el atributo Cupo de la actividad seleccionada
+                        actividadesDisponibles[opcion - 1].Cupo = actividadesDisponibles[opcion - 1].Vacante > 0;
+                       
+                    }
+                    else 
+                    { 
+                        // Si la opcion ingresada es invalida, se da aviso
+
+                        Console.WriteLine("\nOpción inválida");
+                    }
+                }
+
+                //Se listan las opciones seleccionadas con sus detalles
+                Console.WriteLine("\n \nHa seleccionado:\n");
+                foreach (var seleccion in seleccionados)
+                {
+                    {
+                        Console.WriteLine($"{actividadesDisponibles[seleccion - 1].NomDisciplina} \nProfesor: {actividadesDisponibles[seleccion - 1].Profe.Apellido}, {actividadesDisponibles[seleccion - 1].Profe.Nombre}\n - Valor mensual: {actividadesDisponibles[seleccion - 1].ValorCuotaSocio}\n - Valor clase individual: {actividadesDisponibles[seleccion - 1].ValorCuotaNoSocio}\n  ");
+                    }
+                }
             }
+               
+                Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1])
+                                    .Where(a => a.Vacante > 0)
+                                    .ToList();
+                Console.Write("\n");
 
-            Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1]).ToList();
-            Console.Write("\n");
-
-            
-        }
-        */
-
-        //inicio de prueba
-
-        public void ElegirActividades(List<Disciplina> actividadesDisponibles)
-{   
-    Console.WriteLine($"\n {Apellido}, {Nombre}: Seleccione hasta 3 actividades, ingrese 0 para finalizar su elección:");
-    
-    // Ciclo FOR desde 0 hasta la última actividad disponible, que muestra el listado de actividades con
-    // un número de orden para que el usuario elija el nro de actividad
-    for (byte i = 0; i < actividadesDisponibles.Count; i++)
-    {
-        // Verifica si hay vacantes en la actividad actual
-        if (actividadesDisponibles[i].Vacante > 0)
-        {
-            Console.WriteLine($"{i + 1}. {actividadesDisponibles[i].NomDisciplina}");
-        }
-        else
-        {
-            Console.Write("");
-        }
-    }
-    Console.WriteLine("0. Finalizar elección" + "\n"); 
-
-    // Nueva lista en la que se adicionan los cursos seleccionados
-    List<int> seleccionados = new List<int>();
-    int opcion;
-    
-    // Condicion while: mientras la cantidad de elegidos sea menor que 3, el nro de actividad ingresado sea >0 (si es cero, se toma como elección nula) y el nro de actividad ingresado sea <= a la cantidad de actividades disponibles, se agrega la actividad seleccionada a esta lista
-    while (seleccionados.Count < 3 && (opcion = Int32.Parse(Console.ReadLine())) > 0 && opcion <= actividadesDisponibles.Count ) 
-    {             
-        seleccionados.Add(opcion);
-        
-        // Actualiza el atributo Cupo de la actividad seleccionada
-        actividadesDisponibles[opcion - 1].Cupo = actividadesDisponibles[opcion - 1].Vacante > 0;
-    }
-
-    // Filtra las actividades seleccionadas para incluir solo aquellas con vacantes disponibles
-    Actividades = seleccionados.Select(index => actividadesDisponibles[index - 1])
-                             .Where(a => a.Vacante > 0)
-                             .ToList();
-    Console.Write("\n");
-}
-
-
-
-       //fin prueba
-
+            } //fin elegiractividad
 
         //-------------------------------------------------
+
         public static void MostrarSocios()
         {
             Console.WriteLine("\n LISTADO DE SOCIOS \n");
             Console.WriteLine("------------------------------ \n");
 
             foreach (var alumno in ListadoSocios)
-            { 
+            {
                 Console.WriteLine(alumno);
                 Console.WriteLine("-----------------------------\n");
-               
+
             }
 
             Console.WriteLine("\nPresione una tecla para continuar");
             Console.ReadKey();
             Console.Clear();
         }
-
-        public static void MostrarNOSocios()
+//----------------------------------------------------
+       public static void MostrarNOSocios()
         {
             Console.WriteLine("\n LISTADO DE NO SOCIOS \n");
             Console.WriteLine("------------------------------ \n");
@@ -204,6 +226,8 @@ public class Alumno : Persona
             Console.ReadKey();
             Console.Clear();
         }
+
+//------------------------------------------
 
         public override string ToString()
         {

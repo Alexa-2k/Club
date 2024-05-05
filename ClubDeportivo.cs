@@ -357,15 +357,16 @@ namespace Club
 
             //======================================================
 
-            //Mostrar listado de socios
+            //Mostrar listado de no socios
+            Alumno.MostrarSocios();
+            Console.WriteLine("\n");
 
             Alumno.MostrarNOSocios();
             Console.WriteLine("\n");
 
-            //Mostrar listado de No socios
+            //Mostrar listado de  socios
 
-            Alumno.MostrarSocios();
-            Console.WriteLine("\n");
+            
 
             
             //Listado de alumnos cuya cuota vence hoy. 
