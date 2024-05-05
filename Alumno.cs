@@ -162,7 +162,7 @@ public class Alumno : Persona
                 foreach (var seleccion in seleccionados)
                 {
                     {
-                        Console.WriteLine($"{actividadesDisponibles[seleccion - 1].NomDisciplina} \nProfesor: {actividadesDisponibles[seleccion - 1].Profe.Apellido}, {actividadesDisponibles[seleccion - 1].Profe.Nombre}\n - Valor mensual: {actividadesDisponibles[seleccion - 1].ValorCuotaSocio}\n - Valor clase individual: {actividadesDisponibles[seleccion - 1].ValorCuotaNoSocio}\n  ");
+                        Console.WriteLine($"{actividadesDisponibles[seleccion - 1].NomDisciplina} \nProfesor: {actividadesDisponibles[seleccion - 1].Profe.Apellido}, {actividadesDisponibles[seleccion - 1].Profe.Nombre}\n - Valor mensual: $ {actividadesDisponibles[seleccion - 1].ValorCuotaSocio}\n - Valor clase individual $: {actividadesDisponibles[seleccion - 1].ValorCuotaNoSocio}\n  ");
                     }
                 }
             }
